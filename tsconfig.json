@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "baseUrl": "tsconfig",
     "lib": ["es2018", "dom"],
     "declaration": true,

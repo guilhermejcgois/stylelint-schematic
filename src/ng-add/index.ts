@@ -40,6 +40,11 @@ function addStyleLintPackages(isSass: boolean) {
     json.scripts[`lint:${lang}`] = json.scripts[`lint:${lang}`] || `stylelint "src/**/*.${lang}"`;
 
     json.devDependencies = sortObjectByKeys(json.devDependencies);
+
+    if (json.dependencies['@guilhermejcgois/ng-stylelint']) {
+      delete json.dependencies['@guilhermejcgois/ng-stylelint'];
+    }
+
     host.overwrite('package.json', JSON.stringify(json, null, 2));
 
     context.addTask(new NodePackageInstallTask());
