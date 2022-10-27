@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "SchematicsNgAdd",
+    "title": "My Serviceng-add Schema",
+    "type": "object",
+    "properties": {
+        "sass": {
+            "description": "Indicates that the style language is SASS.",
+            "type": "boolean"
+        }
+    }
+}
