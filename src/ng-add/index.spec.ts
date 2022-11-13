@@ -10,7 +10,7 @@ const packageJSON = require('../../package.json');
 const stylelintVersion = packageJSON.devDependencies['stylelint'];
 const stylelintOrderVersion = packageJSON.devDependencies['stylelint-order'];
 const stylelintConfigCssVersion = packageJSON.devDependencies['stylelint-config-standard'];
-const stylelintConfigRatOrderVersion = packageJSON.devDependencies['stylelint-config-rational-order'];
+const stylelintSemanticGroups = packageJSON.devDependencies['stylelint-semantic-groups'];
 const stylelintConfigSassVersion = packageJSON.devDependencies['stylelint-config-sass-guidelines'];
 
 describe('ng-add', () => {
@@ -23,7 +23,7 @@ describe('ng-add', () => {
       JSON.stringify({
         // In a real workspace ng-add seems to add @angular-eslint/schematics to dependencies first
         dependencies: {
-          '@guilhermejcgois/ng-stylelint': packageJSON.version,
+          '@guilhermejcgois/stylelint-schematic': packageJSON.version,
         },
       }),
     );
@@ -64,17 +64,11 @@ describe('ng-add', () => {
 
       const projectPackageJSON = JSON.parse(tree.readContent('/package.json'));
       const devDeps = projectPackageJSON.devDependencies;
-      const deps = projectPackageJSON.dependencies;
-      const scripts = projectPackageJSON.scripts;
-
-      expect(scripts['lint:css']).toEqual('stylelint "src/**/*.css"');
 
       expect(devDeps['stylelint']).toEqual(`^${stylelintVersion}`);
       expect(devDeps['stylelint-order']).toEqual(`^${stylelintOrderVersion}`);
-      expect(devDeps['stylelint-config-rational-order']).toEqual(`^${stylelintConfigRatOrderVersion}`);
+      expect(devDeps['stylelint-semantic-groups']).toEqual(`^${stylelintSemanticGroups}`);
       expect(devDeps['stylelint-config-standard']).toEqual(`^${stylelintConfigCssVersion}`);
-
-      expect(deps['@guilhermejcgois/ng-stylelint']).toBeUndefined();
   });
 
   it('should add stylelint dependencies for SASS project', async () => {
@@ -85,16 +79,10 @@ describe('ng-add', () => {
 
       const projectPackageJSON = JSON.parse(tree.readContent('/package.json'));
       const devDeps = projectPackageJSON.devDependencies;
-      const deps = projectPackageJSON.dependencies;
-      const scripts = projectPackageJSON.scripts;
-
-      expect(scripts['lint:scss']).toEqual('stylelint "src/**/*.scss"');
 
       expect(devDeps['stylelint']).toEqual(`^${stylelintVersion}`);
       expect(devDeps['stylelint-order']).toEqual(`^${stylelintOrderVersion}`);
-      expect(devDeps['stylelint-config-rational-order']).toEqual(`^${stylelintConfigRatOrderVersion}`);
+      expect(devDeps['stylelint-semantic-groups']).toEqual(`^${stylelintSemanticGroups}`);
       expect(devDeps['stylelint-config-sass-guidelines']).toEqual(`^${stylelintConfigSassVersion}`);
-
-      expect(deps['@guilhermejcgois/ng-stylelint']).toBeUndefined();
   });
 });
