@@ -6,7 +6,8 @@
     "build": "tsc -p tsconfig.json && npx --yes copyfiles src/**/*.json dist/",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "prepare": "husky install"
   },
   "keywords": [
     "schematics"
@@ -28,6 +29,7 @@
     "@angular-devkit/core": "^14.2.7",
     "@angular-devkit/schematics": "^14.2.7",
     "@nrwl/devkit": "^15.0.13",
+    "husky": "^8.0.2",
     "strip-json-comments": "3.1.1",
     "typescript": "~4.7.2"
   },
